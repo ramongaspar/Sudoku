@@ -10,3 +10,67 @@
 .cell img{
     width: 100%;
 }
+
+#main{
+    width: 800px; 
+    height: 800px;
+}
+#images{
+    padding: 0.5rem;
+    border: 2px solid black;
+    background: #f1f1f1;
+    position: absolute;
+    top:12rem;
+    left: 12rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    width: 400px;
+    height: 400px;
+}
+
+#images img{
+    border-radius: 50%;
+    width: 100%;
+}
+
+
+@media (max-width: 801px) {
+     #main{
+        height: 600px;
+        width: 600px;
+     }
+     #images{
+        top: 7rem;
+        left: 8rem;
+        width: 350px;
+        height: 350px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #main{
+       height: 550px;
+       width: 550px;
+    }
+    #images{
+        top: 10rem;
+        left: 10rem;
+        width: 250px;
+        height: 250px;
+    }
+ }
+
+ @media (max-width: 450px) {
+    #main{
+       height: 330px;
+       width: 330px;
+    }
+    #images{
+        top: 5rem;
+        left: 6rem;
+        width: 150px;
+        height: 150px;
+    }
+ }

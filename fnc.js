@@ -204,11 +204,16 @@ const makeImg = (num) =>{
 const generateBoard = (i = 16)=>{   
     if (i === 0) return;
     const num = Math.floor(Math.random()*9) + 1;
+    if(num === 0){
+        num+=1
+    }
     const index = Math.floor(Math.random()*80) + 1;
     currBoard.setCellValue(cell[index].id, num);
     const board = JSON.stringify(currBoard.board)
     if(isValidSudoku(JSON.parse(board))){
-        cell[index].innerHTML = num;
+        if(cell[index].childNodes.length === 0){
+            cell[index].appendChild (makeImg(num));
+        }
         i--
     }else{
         currBoard.setCellValue(cell[index].id, '.');
@@ -255,12 +260,33 @@ const addCellsRef = () =>{
         }
     }
 }
+
+
 const getNumber = async() =>{
-    return prompt('enter num')
+    const div = document.createElement('div')
+    div.id = 'images'
+
+    let res = new Promise(resolve =>{
+        for(let i=1;i<10;i++){
+            const imgDiv = document.createElement('div')
+            imgDiv.id = i;
+            imgDiv.appendChild(makeImg(i))
+            imgDiv.addEventListener('click',  async()=>{
+                document.getElementById('main').removeChild(div)
+                resolve(i)
+            })
+            div.appendChild(imgDiv)
+        }
+    })
+    
+    document.getElementById('main').appendChild(div)
+    return res
+
 }
 const addNumber = async (index)=>{    
     const num = await getNumber()
-    cell[index].innerHTML = num
+    console.log('returned')
+    cell[index].appendChild( makeImg(num))
     currBoard.setCellValue(cell[index].id, num)
 }
 
