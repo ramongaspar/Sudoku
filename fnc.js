@@ -286,8 +286,10 @@ const getNumber = async() =>{
 const addNumber = async (index)=>{    
     const num = await getNumber()
     console.log('returned')
-    cell[index].appendChild( makeImg(num))
-    currBoard.setCellValue(cell[index].id, num)
+    if(cell[index].children.length == 0){
+        cell[index].appendChild( makeImg(num))
+        currBoard.setCellValue(cell[index].id, num)
+    }
 }
 
 
