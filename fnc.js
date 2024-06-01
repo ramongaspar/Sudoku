@@ -195,8 +195,9 @@ class Board{
 const cell = document.getElementsByClassName('cell')
 const currBoard = new Board()
 
-const makeImg = (num) =>{
+const makeImg = (num,index) =>{
     const img = document.createElement('img')
+    img.id = index
     img.src = `images/${num}.png`
     return img
 }
@@ -212,7 +213,7 @@ const generateBoard = (i = 16)=>{
     const board = JSON.stringify(currBoard.board)
     if(isValidSudoku(JSON.parse(board))){
         if(cell[index].childNodes.length === 0){
-            cell[index].appendChild (makeImg(num));
+            cell[index].appendChild (makeImg(num, index));
         }
         i--
     }else{
@@ -278,7 +279,6 @@ const getNumber = async() =>{
             div.appendChild(imgDiv)
         }
     })
-    
     document.getElementById('main').appendChild(div)
     return res
 
@@ -287,9 +287,13 @@ const addNumber = async (index)=>{
     const num = await getNumber()
     console.log('returned')
     if(cell[index].children.length == 0){
-        cell[index].appendChild( makeImg(num))
-        currBoard.setCellValue(cell[index].id, num)
+        cell[index].appendChild( makeImg(num, index))
+        
+    }else{
+        cell[index].removeChild(cell[index].childNodes[0])
+        cell[index].appendChild( makeImg(num, index) )
     }
+    currBoard.setCellValue(cell[index].id, num)
 }
 
 
