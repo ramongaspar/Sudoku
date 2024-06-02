@@ -29,6 +29,7 @@ export const generateBoard = (cellElement, currBoard, i = 16)=>{
     const index = Math.floor(Math.random()*80) + 1;
     currBoard.setCellValue(cellElement[index].id, num);
     const board = JSON.stringify(currBoard.board)
+    console.log(board, num, 'BOARD EL')
     if(validateBoard(JSON.parse(board))){
         if(cellElement[index].childNodes.length === 0){
             cellElement[index].appendChild (retrieveImageFromValue(num, index));
