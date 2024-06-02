@@ -1,3 +1,5 @@
+import validateBoard from "./boardValidator"
+
 export const retrieveImageFromValue = (value, index) =>{
     const imgElement = document.createElement('img')
     imgElement.id = index
@@ -39,3 +41,5 @@ export const changeCellValue = async (index, cellsElements)=>{
     }
     currBoard.setCellValue(cellsElements[index].id, num)
 }
+
+
