@@ -20,23 +20,26 @@ export class Board{
 
 }
 
-export const generateBoard = (cellElement, currBoard, i = 16)=>{   
+export const generateBoard = (cellsElements, currBoard, i = 16)=>{   
     if (i === 0) return;
     const num = Math.floor(Math.random()*9) + 1;
     if(num === 0){
         num+=1
     }
     const index = Math.floor(Math.random()*80) + 1;
-    currBoard.setCellValue(cellElement[index].id, num);
+    currBoard.setCellValue(cellsElements[index].id, num);
     const board = JSON.stringify(currBoard.board)
     console.log(board, num, 'BOARD EL')
     if(validateBoard(JSON.parse(board))){
-        if(cellElement[index].childNodes.length === 0){
-            cellElement[index].appendChild (retrieveImageFromValue(num, index));
+        if(cellsElements[index].childNodes.length === 0){
+            cellsElements[index].appendChild (retrieveImageFromValue(num, index));
+        }else{
+            cellsElements[index].removeChild(cellsElements[index].childNodes[0]);
+            cellsElements[index].appendChild (retrieveImageFromValue(num, index));
         }
         i--
     }else{
-        currBoard.setCellValue(cellElement[index].id, '.');
+        currBoard.setCellValue(cellsElements[index].id, '.');        
     }
-    return generateBoard(cellElement,currBoard,i)
+    return generateBoard(cellsElements,currBoard,i)
 }

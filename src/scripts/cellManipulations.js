@@ -1,5 +1,3 @@
-import validateBoard from "./boardValidator"
-
 export const retrieveImageFromValue = (value, index) =>{
     const imgElement = document.createElement('img')
     imgElement.id = index
