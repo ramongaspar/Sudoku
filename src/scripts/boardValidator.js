@@ -2,12 +2,13 @@
 
 
 
-function isValidSudoku(board) {
+export default function validateBoard(board) {
     
     const rowsList = [];
     const collumsList = [];
     const blocksList = new Array(9);
-    for(let row=0;row<9;row++){
+
+    for(let row = 0; row < 9; row++){
         const rowMap = {}
         for(let collum = 0; collum < 9; collum++){
             if (board[row][collum]!='.'){
@@ -20,6 +21,7 @@ function isValidSudoku(board) {
         }
         rowsList.push(rowMap);
     }
+    
     for(let collum=0;collum<9;collum++){
         let collumMap= {};
         for(let row = 0; row < 9; row++){
@@ -208,12 +210,3 @@ function isValidSudoku(board) {
 
     ...
 */
-
-console.log(
-    isValidSudoku
-    (
-        
-    [[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."]]
-        
-    )
-)
